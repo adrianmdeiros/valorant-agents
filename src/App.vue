@@ -34,7 +34,11 @@
               {{ valorantAgent.description }}
             </p>
             <h2 class="mt-6 font-bold">Habilidades</h2>
-            <details class="mt-6 border border-neutral-800 hover:border-neutral-100 p-4 flex items-center rounded-md cursor-pointer" v-for="abilitie in valorantAgent.abilities" :key="abilitie?.slot">
+            <details
+              class="mt-6 border border-neutral-800 hover:border-neutral-100 p-4 flex items-center rounded-md cursor-pointer"
+              v-for="abilitie in valorantAgent.abilities"
+              :key="abilitie?.slot"
+            >
               <summary>
                 {{ abilitie.displayName }}
               </summary>
@@ -42,11 +46,10 @@
                 {{ abilitie.description }}
               </p>
             </details>
-        
           </div>
         </li>
         <div
-          v-show="valorantAgents == !valorantAgents"
+          v-if="isLoading"
           className="border-indigo-500 h-6 w-6 animate-spin rounded-full border-2 border-t-neutral-100"
         ></div>
       </ul>
@@ -65,10 +68,30 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from "vue";
+
+interface ValorantAgent {
+  uuid: string;
+  fullPortrait: string;
+  displayName: string;
+  role: {
+    displayName: string;
+  };
+  description: string;
+  abilities: Abilities[];
+}
+
+interface Abilities {
+  slot: string;
+  displayName: string;
+  description: string;
+}
+
+export default defineComponent({
   data() {
     return {
-      valorantAgents: [],
+      valorantAgents: [] as ValorantAgent[],
+      isLoading: true,
     };
   },
   created() {
@@ -80,11 +103,10 @@ export default {
         "https://valorant-api.com/v1/agents?language=pt-BR&isPlayableCharacter=true"
       )
         .then((response) => response.json())
-        .then((data) => {
-          this.valorantAgents = data.data;
-        })
+        .then((data) => (this.valorantAgents = data.data))
+        .then(() => (this.isLoading = false))
         .catch((e) => console.error(e.message));
     },
   },
-};
+});
 </script>
