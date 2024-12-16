@@ -16,7 +16,7 @@
         >
           <img
             class="object-top object-cover w-full h-80"
-            :src="valorantAgent.fullPortrait"
+            :src="valorantAgent.bustPortrait"
             alt="Foto do agente"
           />
           <div
@@ -72,7 +72,7 @@ import { defineComponent } from "vue";
 
 interface ValorantAgent {
   uuid: string;
-  fullPortrait: string;
+  bustPortrait: string;
   displayName: string;
   role: {
     displayName: string;
