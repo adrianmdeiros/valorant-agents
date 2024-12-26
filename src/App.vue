@@ -1,45 +1,32 @@
 <template>
-  <div
-    class="h-full w-full dark:bg-neutral-950 dark:text-neutral-100 bg-neutral-200 text-neutral-950"
-  >
-    <header
-      class="flex justify-between items-center px-9 py-8 w-full bg-blue-600"
-    >
-      <h1 class="text-3xl font-bold text-neutral-100">Agentes do Vavá</h1>
+  <div class="h-full w-full dark:bg-neutral-950 dark:text-neutral-100 bg-neutral-200 text-neutral-950">
+    <header class="flex justify-between items-center px-9 py-8 w-full">
+      <h1 class="text-3xl font-bold text-neutral-100">VUE VALORANT AGENTS</h1>
     </header>
-    <main class="px-12 py-8 min-h-screen">
-      <ul class="flex gap-6 flex-wrap lg:grid grid-cols-3">
-        <li
-          class="border border-opacity-15 border-neutral-800 dark:border-neutral-800 rounded-xl w-full h-fit"
-          v-for="valorantAgent in valorantAgents"
-          :key="valorantAgent.uuid"
-        >
-          <img
-            class="object-top object-cover w-full h-80"
-            :src="valorantAgent.bustPortrait"
-            alt="Foto do agente"
-          />
+    <main class="px-4 py-8 min-h-screen">
+      <ul class="flex gap-4 flex-wrap lg:grid grid-cols-3">
+        <li class="border-2 border-opacity-15 border-neutral-800 rounded-xl w-full h-fit"
+          v-for="valorantAgent in valorantAgents" :key="valorantAgent.uuid">
+          <img class="object-top object-cover w-full h-80" :src="valorantAgent.bustPortrait" alt="Foto do agente" />
           <div
-            class="bg-neutral-100 p-8 dark:text-neutral-100 text-neutral-900 dark:bg-neutral-900 border-t border-neutral-800 border-opacity-10 dark:border-neutral-800"
-          >
-            <h2 class="text-2xl font-bold dark:text-neutral-100">
-              {{ valorantAgent.displayName }}
-            </h2>
-            <p
-              class="rounded-border-2 border-neutral-800 text-start font-bold mt-6"
-            >
-              {{ valorantAgent.role?.displayName }}
-            </p>
-            <p class="px-4 rounded-border-2 border-neutral-800 text-start mt-6">
+            class="bg-neutral-100 p-8 dark:text-neutral-100 text-neutral-900 dark:bg-neutral-900 border-t-2 rounded-xl border-neutral-800 border-opacity-10 dark:border-neutral-800">
+            <div class="flex items-center justify-between mb-10">
+              <h2 class="text-2xl font-bold dark:text-neutral-100">
+                {{ valorantAgent.displayName }}
+              </h2>
+              <p class="rounded-border-2 border-neutral-800 text-start font-bold italic">
+                {{ valorantAgent.role?.displayName }}
+              </p>
+            </div>
+            <p class="px-4 rounded-border-2 border-neutral-800 text-start mb-10">
               {{ valorantAgent.description }}
             </p>
             <h2 class="mt-6 font-bold">Habilidades</h2>
             <details
-              class="mt-6 border border-neutral-800 hover:border-neutral-100 p-4 flex items-center rounded-md cursor-pointer"
-              v-for="abilitie in valorantAgent.abilities"
-              :key="abilitie?.slot"
-            >
-              <summary>
+              class="mt-6 border-2 border-neutral-800 hover:border-neutral-100 p-4 items-center rounded-xl cursor-pointer"
+              v-for="abilitie in valorantAgent.abilities" :key="abilitie?.slot">
+              <summary class="flex items-center gap-4 font-bold">
+                <img :src="abilitie.displayIcon" alt="Ícone da habilidade" class="h-10" />
                 {{ abilitie.displayName }}
               </summary>
               <p class="mt-6">
@@ -48,20 +35,14 @@
             </details>
           </div>
         </li>
-        <div
-          v-if="isLoading"
-          className="border-indigo-500 h-6 w-6 animate-spin rounded-full border-2 border-t-neutral-100"
-        ></div>
+        <div v-if="isLoading"
+          className="border-indigo-500 h-6 w-6 animate-spin rounded-full border-2 border-t-neutral-100"></div>
       </ul>
     </main>
     <footer class="grid place-content-center w-full h-24">
       <p class="font-bold">
         Made with ❤ by
-        <a
-          class="text-blue-600 hover:text-blue-700"
-          href="https://github.com/adrianmdeiros"
-          >adrianmdeiros</a
-        >
+        <a class="text-blue-600 hover:text-blue-700" href="https://github.com/adrianmdeiros">adrianmdeiros</a>
       </p>
     </footer>
   </div>
@@ -85,6 +66,7 @@ interface Abilities {
   slot: string;
   displayName: string;
   description: string;
+  displayIcon: string;
 }
 
 export default defineComponent({
@@ -103,7 +85,9 @@ export default defineComponent({
         "https://valorant-api.com/v1/agents?language=pt-BR&isPlayableCharacter=true"
       )
         .then((response) => response.json())
-        .then((data) => (this.valorantAgents = data.data))
+        .then((data) => {
+          this.valorantAgents = data.data
+        })
         .then(() => (this.isLoading = false))
         .catch((e) => console.error(e.message));
     },
