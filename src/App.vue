@@ -26,7 +26,7 @@
               class="mt-6 border-2 border-neutral-800 hover:border-neutral-100 p-4 items-center rounded-xl cursor-pointer"
               v-for="abilitie in valorantAgent.abilities" :key="abilitie?.slot">
               <summary class="flex items-center gap-4 font-bold">
-                <img :src="abilitie.displayIcon" alt="Ícone da habilidade" class="h-10" />
+                <img v-if="abilitie.displayIcon" :src="abilitie.displayIcon" alt="Ícone da habilidade" class="h-10" />
                 {{ abilitie.displayName }}
               </summary>
               <p class="mt-6">
