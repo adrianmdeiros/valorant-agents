@@ -2,6 +2,7 @@
 
 ##### Front-end Vue.js que utiliza a Valorant-API para mostrar as informações dos agentes do game Valorant. Projeto criado para iniciar meus estudos no Vue.js
 
+![image](https://github.com/user-attachments/assets/2a82edc9-81e7-4fe3-84a0-91fcf7d08790)
 
 
 ### 🚀 Tecnologias
