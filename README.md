@@ -1,5 +1,18 @@
-# Vue 3 + TypeScript + Vite
+# 🎫 Vue Valorant Agents
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+##### Front-end Vue.js que utiliza a Valorant-API para mostrar as informações dos agentes do game Valorant. Projeto criado para iniciar meus estudos no Vue.js
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+
+
+### 🚀 Tecnologias
+
+- Vue 3
+- TypeScript
+- Vite
+- Git
+- Github
+
+
+### ⚖ Licença
+<p> Esse projeto esta licenciado sobre a <a href="https://opensource.org/license/mit/" target="_blank">MIT License</a> </p>
+
