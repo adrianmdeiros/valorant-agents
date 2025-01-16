@@ -1,4 +1,4 @@
-# 🎫 Vue Valorant Agents
+# ✳ Vue Valorant Agents
 
 ##### Front-end Vue.js que utiliza a Valorant-API para mostrar as informações dos agentes do game Valorant. Projeto criado para iniciar meus estudos no Vue.js
 
